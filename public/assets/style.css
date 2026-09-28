@@ -1,0 +1,1179 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fc;
+}
+
+/* =========================
+           NAVBAR
+        ========================= */
+
+.main-navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    padding: 12px 0;
+}
+
+.navbar-brand {
+    font-size: 25px;
+    font-weight: 700;
+    color: #2563eb !important;
+}
+
+    .navbar-brand i {
+        margin-right: 6px;
+    }
+
+.navbar-nav .nav-link {
+    color: #333;
+    font-weight: 500;
+    margin: 0 7px;
+    padding: 9px 10px !important;
+    transition: 0.3s;
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: #2563eb;
+    }
+
+.login-btn {
+    border: 1px solid #2563eb;
+    color: #2563eb !important;
+    border-radius: 7px;
+    padding: 8px 18px !important;
+}
+
+    .login-btn:hover {
+        background: #2563eb;
+        color: #fff !important;
+    }
+
+.register-btn {
+    background: #2563eb;
+    color: #fff !important;
+    border-radius: 7px;
+    padding: 9px 18px !important;
+}
+
+    .register-btn:hover {
+        background: #1d4ed8;
+        color: #fff !important;
+    }
+
+/* =========================
+           FOOTER
+        ========================= */
+
+.main-footer {
+    background: #111827;
+    color: #d1d5db;
+    /*padding-top: 55px;*/
+}
+
+.footer-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer-about {
+    color: #9ca3af;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .footer-links li {
+        margin-bottom: 11px;
+    }
+
+    .footer-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+        .footer-links a:hover {
+            color: #fff;
+            padding-left: 4px;
+        }
+
+.footer-contact {
+    list-style: none;
+    padding: 0;
+}
+
+    .footer-contact li {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 13px;
+        font-size: 14px;
+        color: #9ca3af;
+    }
+
+    .footer-contact i {
+        color: #3b82f6;
+        font-size: 17px;
+    }
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+    .social-icons a {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #1f2937;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+        .social-icons a:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+        }
+
+.footer-bottom {
+    border-top: 1px solid #273244;
+    margin-top: 40px;
+    padding: 18px 0;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+
+    .navbar-nav {
+        padding-top: 15px;
+    }
+
+        .navbar-nav .nav-link {
+            margin: 3px 0;
+        }
+
+    .login-btn,
+    .register-btn {
+        display: inline-block;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .footer-box {
+        margin-bottom: 30px;
+    }
+}
+
+.page-banner {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    padding: 65px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Decorative circles */
+    .page-banner::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 50%;
+        right: -70px;
+        top: -100px;
+    }
+
+    .page-banner::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 50%;
+        left: -80px;
+        bottom: -100px;
+    }
+
+    .page-banner h1 {
+        color: #fff;
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .page-banner p {
+        color: rgba(255,255,255,0.85);
+        font-size: 16px;
+        margin-bottom: 0;
+        max-width: 650px;
+    }
+
+.breadcrumb-area {
+    text-align: right;
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+}
+
+    .breadcrumb-area a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .breadcrumb-area span {
+        margin-left: 8px;
+    }
+
+/* Mobile */
+@media (max-width: 767px) {
+
+    .page-banner {
+        padding: 45px 0;
+        text-align: center;
+    }
+
+        .page-banner h1 {
+            font-size: 30px;
+        }
+
+        .page-banner p {
+            font-size: 14px;
+        }
+
+    .breadcrumb-area {
+        text-align: center;
+        margin-top: 18px;
+    }
+}
+
+.job-section {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.job-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+    .job-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+    }
+
+.job-image {
+    height: 160px;
+    overflow: hidden;
+}
+
+    .job-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+.job-card:hover .job-image img {
+    transform: scale(1.05);
+}
+
+.job-body {
+    padding: 20px;
+}
+
+.job-type {
+    display: inline-block;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.job-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.company-name,
+.job-location {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+    .company-name i,
+    .job-location i {
+        color: #2563eb;
+        margin-right: 5px;
+    }
+
+.job-bottom {
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.salary {
+    color: #111827;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pagination {
+    gap: 6px;
+}
+
+    .pagination .page-link {
+        border: 1px solid #e5e7eb;
+        color: #374151;
+        background: #fff;
+        border-radius: 7px !important;
+        min-width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .pagination .page-link:hover {
+            background: #eff6ff;
+            color: #2563eb;
+            border-color: #2563eb;
+        }
+
+    .pagination .page-item.active .page-link {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background: #f3f4f6;
+        color: #9ca3af;
+        border-color: #e5e7eb;
+    }
+
+    .pagination .page-link i {
+        font-size: 12px;
+        margin: 0 4px;
+    }
+
+@media (max-width: 576px) {
+
+    .pagination {
+        gap: 3px;
+    }
+
+        .pagination .page-link {
+            min-width: 36px;
+            height: 36px;
+            padding: 5px 9px;
+            font-size: 13px;
+        }
+
+        .pagination .page-item:first-child .page-link,
+        .pagination .page-item:last-child .page-link {
+            font-size: 0;
+        }
+
+            .pagination .page-item:first-child .page-link i,
+            .pagination .page-item:last-child .page-link i {
+                font-size: 13px;
+                margin: 0;
+            }
+}
+/* =========================
+   FEATURED JOBS
+========================= */
+
+.featured-jobs {
+    background: #f8f9fc;
+}
+
+
+.view-all-btn {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+    .view-all-btn i {
+        margin-left: 5px;
+    }
+
+    .view-all-btn:hover {
+        color: #1d4ed8;
+    }
+
+
+/* =========================
+   FEATURED CARD
+========================= */
+
+.featured-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #111;
+    text-decoration: none;
+    height: 100%;
+}
+
+    .featured-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .featured-card:hover img {
+        transform: scale(1.06);
+    }
+
+
+/* Dark overlay */
+
+.featured-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient( to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.05) 100% );
+}
+
+
+/* =========================
+   CARD HEIGHT
+========================= */
+
+.featured-large {
+    height: 490px;
+}
+
+.featured-top {
+    height: 240px;
+}
+
+.featured-small {
+    height: 235px;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.featured-content {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 18px;
+    z-index: 2;
+}
+
+.qualification {
+    display: inline-block;
+    background: #ef233c;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 2px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+
+.featured-content h3 {
+    color: #fff;
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.featured-top .featured-content h3 {
+    font-size: 20px;
+}
+
+.featured-small .featured-content h3 {
+    font-size: 17px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 991px) {
+
+    .featured-large {
+        height: 400px;
+    }
+
+    .featured-top {
+        height: 250px;
+    }
+
+    .featured-small {
+        height: 220px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+        .section-heading h2 {
+            font-size: 25px;
+        }
+
+    .featured-large {
+        height: 350px;
+    }
+
+    .featured-top {
+        height: 250px;
+    }
+
+    .featured-small {
+        height: 230px;
+    }
+
+    .featured-content {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+
+        .featured-content h3 {
+            font-size: 18px;
+        }
+
+    .featured-small .featured-content h3 {
+        font-size: 16px;
+    }
+}
+
+
+@media (max-width: 575px) {
+
+    .featured-large {
+        height: 320px;
+    }
+
+    .featured-top {
+        height: 230px;
+    }
+
+    .featured-small {
+        height: 210px;
+    }
+
+        .featured-small .col-md-6 {
+            width: 100%;
+        }
+}
+/* =========================
+   CATEGORY SECTION
+========================= */
+
+.category-section {
+    background: #fff;
+}
+
+.category-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   JOB LIST
+========================= */
+
+.job-list-item {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.job-list-image {
+    height: 255px;
+    overflow: hidden;
+}
+
+    .job-list-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.qualification-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ef233c;
+    color: #fff;
+    padding: 4px 9px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 2px;
+}
+
+
+.job-list-title {
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 15px;
+}
+
+    .job-list-title:hover {
+        color: #2563eb;
+    }
+
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 11px;
+    color: #9ca3af;
+    margin-bottom: 18px;
+}
+
+    .post-meta strong {
+        color: #ef233c;
+    }
+
+    .post-meta i {
+        color: #2563eb;
+        margin-right: 3px;
+    }
+
+
+.job-excerpt {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+
+.read-more-btn {
+    display: inline-block;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #2563eb;
+    padding: 9px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+    .read-more-btn:hover {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
+    }
+
+
+/* =========================
+   LATEST SIDEBAR
+========================= */
+
+.latest-sidebar {
+    position: sticky;
+    top: 90px;
+}
+
+.sidebar-title {
+    position: relative;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    padding-bottom: 14px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+    .sidebar-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 30px;
+        height: 2px;
+        background: #ef233c;
+    }
+
+
+/* =========================
+   LATEST POST
+========================= */
+
+.latest-post {
+    display: flex;
+    gap: 14px;
+    text-decoration: none;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+    .latest-post img {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .latest-post h5 {
+        color: #1f2937;
+        font-size: 15px;
+        line-height: 1.4;
+        font-weight: 600;
+        margin: 0 0 8px;
+    }
+
+    .latest-post:hover h5 {
+        color: #2563eb;
+    }
+
+    .latest-post small {
+        color: #9ca3af;
+        font-size: 10px;
+    }
+
+        .latest-post small i {
+            color: #2563eb;
+        }
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 991px) {
+
+    .category-title {
+        font-size: 30px;
+    }
+
+    .latest-sidebar {
+        position: static;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 767px) {
+
+    .category-title {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    .job-list-image {
+        height: 230px;
+    }
+
+    .job-list-title {
+        font-size: 21px;
+    }
+
+    .latest-post img {
+        width: 105px;
+        height: 75px;
+    }
+
+    .latest-post h5 {
+        font-size: 14px;
+    }
+}
+/* =================================
+           ARTICLE
+        ================================= */
+
+.article-title {
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 30px;
+}
+
+    .post-meta strong {
+        color: #ef233c;
+    }
+
+.post-content {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #333;
+}
+
+    .post-content h3 {
+        font-size: 21px;
+        font-weight: 700;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        color: #111;
+    }
+
+    .post-content ul {
+        padding-left: 22px;
+    }
+
+    .post-content li {
+        margin-bottom: 9px;
+    }
+
+
+/* =================================
+           SIDEBAR
+        ================================= */
+
+.latest-sidebar {
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+    .sidebar-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 30px;
+        height: 2px;
+        background: #ef233c;
+    }
+
+
+.latest-post {
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+    .latest-post img {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .latest-post h5 {
+        font-size: 14px;
+        line-height: 1.45;
+        font-weight: 600;
+        color: #222;
+        margin: 0 0 8px;
+    }
+
+    .latest-post:hover h5 {
+        color: #2563eb;
+    }
+
+    .latest-post small {
+        font-size: 10px;
+        color: #999;
+    }
+
+        .latest-post small i {
+            color: #168cff;
+        }
+
+
+/* =================================
+           RELATED POSTS
+        ================================= */
+
+.related-heading {
+    background: #f31532;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 15px;
+    margin-bottom: 30px;
+    border-radius: 2px;
+}
+
+.related-card {
+    height: 100%;
+}
+
+.related-image {
+    display: block;
+    position: relative;
+    height: 170px;
+    overflow: hidden;
+}
+
+    .related-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .4s;
+    }
+
+.related-card:hover img {
+    transform: scale(1.05);
+}
+
+.related-badge {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background: #ef233c;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+}
+
+.related-content h3 {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-top: 10px;
+}
+
+    .related-content h3 a {
+        color: #222;
+        text-decoration: none;
+    }
+
+        .related-content h3 a:hover {
+            color: #ef233c;
+        }
+
+.related-date {
+    color: #999;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+    .related-date i {
+        color: #168cff;
+    }
+
+.navbar-brand img {
+    width:100%;
+    height:50px;
+    object-fit: contain;
+}
+/* =====================================
+   GOVERNMENT JOB PAGE BANNER
+===================================== */
+
+.govt-page-banner {
+    position: relative;
+
+    min-height: 320px;
+
+    display: flex;
+    align-items: center;
+
+    background-image: url("https://c.ndtvimg.com/2026-03/gjroah2o_upsssc-recruitment-2026-aso-aro-929-posts-apply-date-pet-2025_625x300_26_March_26.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+
+/* Dark Overlay */
+
+.govt-banner-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.78),
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.20)
+    );
+}
+
+
+/* Content */
+
+.govt-banner-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 700px;
+
+    padding: 60px 0;
+}
+
+
+/* Breadcrumb */
+
+.govt-breadcrumb {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+}
+
+.govt-breadcrumb a {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-weight: 500;
+}
+
+.govt-breadcrumb a:hover {
+    color: #60a5fa;
+}
+
+.govt-breadcrumb i {
+    color: rgba(255,255,255,.6);
+
+    font-size: 10px;
+}
+
+.govt-breadcrumb span {
+    color: rgba(255,255,255,.8);
+}
+
+
+/* Title */
+
+.govt-banner-content h1 {
+    color: #fff;
+
+    font-size: 48px;
+
+    font-weight: 700;
+
+    margin: 0 0 12px;
+}
+
+
+/* Description */
+
+.govt-banner-content p {
+    color: rgba(255,255,255,.9);
+
+    font-size: 17px;
+
+    margin: 0;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 767px) {
+
+    .govt-page-banner {
+        min-height: 250px;
+
+        background-position: center;
+    }
+
+    .govt-banner-content {
+        padding: 45px 0;
+
+        text-align: center;
+    }
+
+    .govt-breadcrumb {
+        justify-content: center;
+
+        font-size: 12px;
+    }
+
+    .govt-banner-content h1 {
+        font-size: 32px;
+    }
+
+    .govt-banner-content p {
+        font-size: 14px;
+    }
+
+}
