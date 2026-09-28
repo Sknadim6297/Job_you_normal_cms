@@ -13,9 +13,11 @@
 <body>
     <nav class="navbar navbar-expand-lg main-navbar sticky-top">
         <div class="container">
-            @php($logoPath = $settings['logo_path'] ?? 'assets/img/logo.png')
+            @php
+                $logoPath = $settings['logo_path'] ?? 'assets/img/logo.png';
+            @endphp
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ \App\Support\ImageResolver::resolve($logoPath, asset('assets/img/logo.png')) }}" alt="{{ $settings['site_title'] ?? 'JobYou' }}">
+                <img src="{{ \App\Support\ImageResolver::resolve($logoPath, asset('assets/img/logo.png')) }}" data-fallback-image="{{ asset('assets/img/logo.png') }}" alt="{{ $settings['site_title'] ?? 'JobYou' }}">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,7 +49,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="job-card">
                         <div class="job-image position-relative">
-                            <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" class="img-fluid w-100" alt="{{ $job->title }}">
+                            <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" class="img-fluid w-100" alt="{{ $job->title }}">
                             @if($job->qualification)<span class="position-absolute top-0 start-0 m-3 badge bg-primary px-3 py-2">{{ $job->qualification }}</span>@endif
                         </div>
                         <div class="job-body">
@@ -70,6 +72,7 @@
             <div class="col-md-6 text-center text-md-end"><a href="#" class="text-decoration-none text-white">Contact Us</a><span class="footer-separator">|</span><a href="#" class="text-decoration-none text-white">Disclaimer</a><span class="footer-separator">|</span><a href="#" class="text-decoration-none text-white">Privacy Policy</a></div>
         </div></div></div>
     </footer>
+    <script src="{{ asset('assets/image-fallback.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@
     @endphp
     <aside class="sidebar" id="adminSidebar">
         <a href="{{ route('admin.dashboard') }}" class="brand" aria-label="{{ \App\Models\SiteSetting::values()['site_title'] ?? 'JobYou' }}">
-            <img src="{{ \App\Support\ImageResolver::resolve($adminLogoPath, asset('assets/img/logo.png')) }}" alt="{{ \App\Models\SiteSetting::values()['site_title'] ?? 'JobYou' }}">
+            <img src="{{ \App\Support\ImageResolver::resolve($adminLogoPath, asset('assets/img/logo.png')) }}" data-fallback-image="{{ asset('assets/img/logo.png') }}" alt="{{ \App\Models\SiteSetting::values()['site_title'] ?? 'JobYou' }}">
         </a>
         <div class="nav-label">Workspace</div>
         <a class="side-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
@@ -84,6 +84,7 @@
     </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('assets/image-fallback.js') }}" defer></script>
 @stack('scripts')
 </body>
 </html>

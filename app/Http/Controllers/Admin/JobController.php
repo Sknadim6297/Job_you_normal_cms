@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\JobCategory;
 use App\Models\JobPosting;
+use App\Support\RichTextSanitizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -80,6 +81,9 @@ class JobController extends Controller
             $data['image_url'] = $job?->image_url ?? null;
         }
 
+        if (array_key_exists('content', $data)) {
+            $data['content'] = RichTextSanitizer::sanitize($data['content']);
+        }
         $data['slug'] = Str::slug(($data['slug'] ?? '') ?: $data['title']);
         $data['is_published'] = $request->boolean('is_published');
         $data['is_featured'] = $request->boolean('is_featured');

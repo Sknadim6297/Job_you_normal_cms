@@ -17,6 +17,7 @@ class ImageHandlingTest extends TestCase
         Storage::fake('public');
 
         $stored = Storage::disk('public')->putFile('jobs', UploadedFile::fake()->image('job-upload.jpg', 1200, 800));
+        config(['app.url' => 'http://localhost']);
 
         JobPosting::create([
             'title' => 'Uploaded Job',
@@ -31,10 +32,23 @@ class ImageHandlingTest extends TestCase
             'is_published' => true,
         ]);
 
-        $response = $this->get('/');
+        JobPosting::create([
+            'title' => 'Legacy Uploaded Job',
+            'slug' => 'legacy-uploaded-job',
+            'qualification' => '10th Pass',
+            'image_url' => 'storage/'.$stored,
+            'author' => 'ADMIN963',
+            'published_at' => now()->subMinute(),
+            'sort_order' => 2,
+            'is_published' => true,
+        ]);
+
+        $response = $this->get('https://jobs.example.test/');
 
         $response->assertOk();
-        $response->assertSee('/storage/' . $stored, false);
+        $response->assertSee('https://jobs.example.test/storage/'.$stored, false);
+        $response->assertDontSee('http://localhost/storage/'.$stored, false);
+        $this->assertSame(2, substr_count($response->getContent(), 'https://jobs.example.test/storage/'.$stored));
     }
 
     public function test_home_page_uses_external_image_url_when_uploaded_image_is_missing(): void

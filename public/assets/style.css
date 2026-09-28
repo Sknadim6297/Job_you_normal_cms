@@ -868,23 +868,45 @@ body {
     font-size: 15px;
     line-height: 1.9;
     color: #333;
+    overflow-wrap: anywhere;
 }
 
+@media (max-width: 767px) {
+    .job-details-section { overflow-x: clip; }
+}
+
+    .post-content h1,
+    .post-content h2,
     .post-content h3 {
-        font-size: 21px;
         font-weight: 700;
         margin-top: 30px;
         margin-bottom: 15px;
         color: #111;
     }
 
+    .post-content h1 { font-size: 28px; }
+    .post-content h2 { font-size: 24px; }
+    .post-content h3 { font-size: 21px; }
+
     .post-content ul {
         padding-left: 22px;
     }
 
+    .post-content ol { padding-left: 22px; }
+
     .post-content li {
         margin-bottom: 9px;
     }
+
+    .post-content blockquote {
+        margin: 20px 0;
+        padding: 12px 18px;
+        border-left: 3px solid #2563eb;
+        background: #f8f9fc;
+        color: #4b5563;
+    }
+
+    .post-content a { color: #2563eb; overflow-wrap: anywhere; }
 
 
 /* =================================

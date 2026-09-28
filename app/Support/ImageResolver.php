@@ -15,25 +15,52 @@ class ImageResolver
             return static::fallbackUrl($fallback);
         }
 
+        $path = static::storagePath($value);
+
+        if ($path !== null && Storage::disk('public')->exists($path)) {
+            return asset('storage/'.$path);
+        }
+
         if (static::isExternalUrl($value)) {
             return $value;
         }
 
         $path = ltrim($value, '/');
 
-        if ($path !== '' && Str::startsWith($path, 'storage/')) {
-            return asset($path);
-        }
-
-        if ($path !== '' && Storage::disk('public')->exists($path)) {
-            return Storage::disk('public')->url($path);
-        }
-
         if ($path !== '' && file_exists(public_path($path))) {
             return asset($path);
         }
 
         return static::fallbackUrl($fallback);
+    }
+
+    protected static function storagePath(string $value): ?string
+    {
+        $path = $value;
+
+        if (static::isExternalUrl($value)) {
+            $urlHost = parse_url($value, PHP_URL_HOST);
+            $appHost = parse_url((string) config('app.url'), PHP_URL_HOST);
+            $requestHost = request()->getHost();
+
+            if (! str_starts_with((string) parse_url($value, PHP_URL_PATH), '/storage/')) {
+                return null;
+            }
+
+            if (! in_array($urlHost, array_filter([$appHost, $requestHost]), true)) {
+                return null;
+            }
+
+            $path = (string) parse_url($value, PHP_URL_PATH);
+        }
+
+        $path = ltrim($path, '/');
+
+        if (Str::startsWith($path, 'storage/')) {
+            $path = substr($path, strlen('storage/'));
+        }
+
+        return $path !== '' ? $path : null;
     }
 
     public static function isExternalUrl(?string $value): bool

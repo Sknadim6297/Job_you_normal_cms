@@ -11,8 +11,11 @@
 <body>
     <nav class="navbar navbar-expand-lg main-navbar sticky-top">
         <div class="container">
+            @php
+                $logoPath = \App\Models\SiteSetting::values()['logo_path'] ?? 'assets/img/logo.png';
+            @endphp
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="JobYou" />
+                <img src="{{ \App\Support\ImageResolver::resolve($logoPath, asset('assets/img/logo.png')) }}" data-fallback-image="{{ asset('assets/img/logo.png') }}" alt="JobYou" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,7 +32,7 @@
         </div>
     </nav>
 
-    <section class="py-4">
+    <section class="py-4 job-details-section">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-8">
@@ -41,14 +44,12 @@
                         <span>{{ $job->published_at ? $job->published_at->format('F j, Y') : 'Recently' }}</span>
                     </div>
 
-                    @if($job->image_url)
-                        <div class="mb-4">
-                            <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" alt="{{ $job->title }}" class="img-fluid rounded w-100" style="max-height: 420px; height: 420px; object-fit: cover;">
-                        </div>
-                    @endif
+                    <div class="mb-4">
+                        <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $job->title }}" class="img-fluid rounded w-100" style="max-height: 420px; height: 420px; object-fit: cover;">
+                    </div>
 
                     <div class="post-content">
-                        {!! $job->content ?: '<p>'.e($job->excerpt ?: 'No description available.').'</p>' !!}
+                        {!! \App\Support\RichTextSanitizer::render($job->content ?: '<p>'.e($job->excerpt ?: 'No description available.').'</p>') !!}
                     </div>
                 </div>
 
@@ -58,7 +59,7 @@
 
                         @forelse($latestJobs as $latest)
                             <a href="{{ route('job-details') }}?job={{ $latest->slug }}" class="latest-post">
-                                <img src="{{ \App\Support\ImageResolver::resolve($latest->image_url, 'https://images.pexels.com/photos/5905710/pexels-photo-5905710.jpeg') }}" alt="{{ $latest->title }}">
+                                <img src="{{ \App\Support\ImageResolver::resolve($latest->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $latest->title }}">
                                 <div>
                                     <h5>{{ $latest->title }}</h5>
                                     <small><i class="bi bi-clock"></i> {{ $latest->published_at ? $latest->published_at->format('F j, Y') : 'Recently' }}</small>
@@ -82,7 +83,7 @@
                     <div class="col-lg-4 col-md-6">
                         <article class="related-card">
                             <a href="{{ route('job-details') }}?job={{ $related->slug }}" class="related-image">
-                                <img src="{{ \App\Support\ImageResolver::resolve($related->image_url, 'https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg') }}" alt="{{ $related->title }}">
+                                <img src="{{ \App\Support\ImageResolver::resolve($related->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $related->title }}">
                                 <span class="related-badge">{{ strtoupper($related->qualification ?: 'JOB') }}</span>
                             </a>
                             <div class="related-content">
@@ -115,6 +116,7 @@
         </div>
     </footer>
 
+    <script src="{{ asset('assets/image-fallback.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

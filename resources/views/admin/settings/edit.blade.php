@@ -40,7 +40,7 @@
                     <div class="mt-3">
                         <div class="small text-muted mb-2">Preview</div>
                         <div class="border rounded bg-white d-inline-block p-2">
-                            <img id="logo-preview" src="{{ \App\Support\ImageResolver::resolve(old('logo_path', $settings['logo_path'] ?? 'assets/img/logo.png'), asset('assets/img/logo.png')) }}" alt="Logo preview" style="width: 180px; height: 52px; object-fit: contain; display: block;">
+                            <img id="logo-preview" src="{{ \App\Support\ImageResolver::resolve(old('logo_path', $settings['logo_path'] ?? 'assets/img/logo.png'), asset('assets/img/logo.png')) }}" data-fallback-image="{{ asset('assets/img/logo.png') }}" alt="Logo preview" style="width: 180px; height: 52px; object-fit: contain; display: block;">
                         </div>
                     </div>
                 </div>
