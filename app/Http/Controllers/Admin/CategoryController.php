@@ -11,7 +11,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('admin.categories.index', ['categories' => JobCategory::withCount('jobs')->orderBy('sort_order')->get()]);
+        return view('admin.categories.index', [
+            'categories' => JobCategory::withCount('jobs')->orderBy('sort_order')->paginate(15)->withQueryString(),
+        ]);
     }
 
     public function store(Request $request)

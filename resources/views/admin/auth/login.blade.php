@@ -58,7 +58,7 @@
             @php
                 $loginLogoPath = \App\Models\SiteSetting::values()['logo_path'] ?? 'assets/img/logo.png';
             @endphp
-            <div class="mb-4">
+            <div class="mb-3">
                 <img
                     class="login-logo"
                     src="{{ \App\Support\ImageResolver::resolve($loginLogoPath, asset('assets/img/logo.png')) }}"
@@ -66,12 +66,7 @@
                     alt="JobYou logo"
                 >
             </div>
-            <h4 class="mb-0">JobYou</h4>
-            <small class="text-muted d-block mb-4">Admin workspace</small>
-
-            <h2 class="h4 mb-1">Welcome back</h2>
-            <p class="text-muted mb-4">Sign in to manage your website.</p>
-
+            <p class="text-center text-muted small mb-4">Admin workspace</p>
             @if($errors->any())
                 <div class="alert alert-danger">{{ $errors->first() }}</div>
             @endif

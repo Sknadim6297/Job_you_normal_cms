@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JobCategory;
 use App\Models\JobPosting;
 use App\Models\NavigationItem;
 use App\Models\SiteSetting;
@@ -14,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $settings = Schema::hasTable('site_settings') ? SiteSetting::values() : [];
+        $settings = SiteSetting::values();
 
         $navigation = Schema::hasTable('navigation_items')
             ? NavigationItem::query()
@@ -24,17 +23,8 @@ class HomeController extends Controller
                 ->get()
             : collect();
 
-        $categories = Schema::hasTable('job_categories')
-            ? JobCategory::query()
-                ->where('is_active', true)
-                ->orderBy('sort_order')
-                ->orderBy('name')
-                ->get()
-            : collect();
-
         $jobs = Schema::hasTable('job_postings')
             ? JobPosting::query()
-                ->with('category')
                 ->where('is_published', true)
                 ->orderBy('sort_order')
                 ->orderByDesc('published_at')
@@ -44,8 +34,33 @@ class HomeController extends Controller
         return view('frontend.index', [
             'settings' => $settings,
             'navigation' => $navigation,
-            'categories' => $categories,
             'jobs' => $jobs,
+        ]);
+    }
+
+    public function details(Request $request)
+    {
+        $job = JobPosting::query()
+            ->where('is_published', true)
+            ->when($request->input('job'), fn ($query, $slug) => $query->where('slug', $slug))
+            ->latest('published_at')
+            ->first();
+
+        if (! $job) {
+            abort(404);
+        }
+
+        $latestJobs = JobPosting::query()
+            ->where('is_published', true)
+            ->where('id', '!=', $job->id)
+            ->orderByDesc('published_at')
+            ->take(5)
+            ->get();
+
+        return view('frontend.pages.job-details', [
+            'job' => $job,
+            'relatedJobs' => $latestJobs->take(3),
+            'latestJobs' => $latestJobs,
         ]);
     }
 

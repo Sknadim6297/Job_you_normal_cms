@@ -57,7 +57,7 @@ class JobController extends Controller
             'title' => ['required', 'string', 'max:180'],
             'slug' => ['nullable', 'string', 'max:200'],
             'qualification' => ['nullable', 'string', 'max:80'],
-            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,gif,svg', 'max:2048'],
+            'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,gif', 'dimensions:max_width=5000,max_height=5000', 'max:2048'],
             'image_url' => ['nullable', 'string', 'max:500'],
             'excerpt' => ['nullable', 'string', 'max:1000'],
             'content' => ['nullable', 'string'],

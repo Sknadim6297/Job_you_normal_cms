@@ -101,7 +101,7 @@
                             <div class="row g-4 align-items-start">
                                 <div class="col-md-6">
                                     <div class="job-list-image position-relative">
-                                        <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $job->title }}" class="img-fluid">
+                                        <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $job->title }}" class="img-fluid" loading="lazy" decoding="async">
                                         <span class="qualification-badge">{{ strtoupper($job->qualification ?: $title) }}</span>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                         <h3 class="sidebar-title">Latest Updates</h3>
                         @foreach($latestJobs as $job)
                             <a href="{{ route('job-details') }}?job={{ $job->slug }}" class="latest-post">
-                                <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $job->title }}">
+                                <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $job->title }}" loading="lazy" decoding="async">
                                 <div>
                                     <h5>{{ $job->title }}</h5>
                                     <small><i class="bi bi-clock"></i> {{ $job->published_at ? $job->published_at->format('F j, Y') : 'Recently' }}</small>

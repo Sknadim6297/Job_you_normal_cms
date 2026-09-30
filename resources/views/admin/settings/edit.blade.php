@@ -93,6 +93,22 @@
             return;
         }
 
+        const applyPreview = function (value) {
+            const rawValue = (value || '').trim();
+
+            if (rawValue === '') {
+                preview.src = preview.dataset.fallbackImage || '';
+                return;
+            }
+
+            if (/^(javascript:|data:)/i.test(rawValue)) {
+                preview.src = preview.dataset.fallbackImage || '';
+                return;
+            }
+
+            preview.src = rawValue;
+        };
+
         uploadInput.addEventListener('change', function (event) {
             const file = event.target.files && event.target.files[0];
             if (!file) return;
@@ -105,9 +121,7 @@
         });
 
         urlInput.addEventListener('input', function () {
-            if (urlInput.value.trim() !== '') {
-                preview.src = urlInput.value.trim();
-            }
+            applyPreview(urlInput.value);
         });
     });
 </script>

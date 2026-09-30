@@ -59,7 +59,7 @@
 
                         @forelse($latestJobs as $latest)
                             <a href="{{ route('job-details') }}?job={{ $latest->slug }}" class="latest-post">
-                                <img src="{{ \App\Support\ImageResolver::resolve($latest->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $latest->title }}">
+                                <img src="{{ \App\Support\ImageResolver::resolve($latest->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $latest->title }}" loading="lazy" decoding="async">
                                 <div>
                                     <h5>{{ $latest->title }}</h5>
                                     <small><i class="bi bi-clock"></i> {{ $latest->published_at ? $latest->published_at->format('F j, Y') : 'Recently' }}</small>
@@ -83,7 +83,7 @@
                     <div class="col-lg-4 col-md-6">
                         <article class="related-card">
                             <a href="{{ route('job-details') }}?job={{ $related->slug }}" class="related-image">
-                                <img src="{{ \App\Support\ImageResolver::resolve($related->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $related->title }}">
+                                <img src="{{ \App\Support\ImageResolver::resolve($related->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="{{ $related->title }}" loading="lazy" decoding="async">
                                 <span class="related-badge">{{ strtoupper($related->qualification ?: 'JOB') }}</span>
                             </a>
                             <div class="related-content">

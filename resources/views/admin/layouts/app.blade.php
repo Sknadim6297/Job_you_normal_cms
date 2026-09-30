@@ -50,11 +50,13 @@
 <body>
 <div class="admin-shell">
     @php
-        $adminLogoPath = \App\Models\SiteSetting::values()['logo_path'] ?? 'assets/img/logo.png';
+        $adminSettings = \App\Models\SiteSetting::values();
+        $adminLogoPath = $adminSettings['logo_path'] ?? 'assets/img/logo.png';
+        $adminSiteTitle = $adminSettings['site_title'] ?? 'JobYou';
     @endphp
     <aside class="sidebar" id="adminSidebar">
-        <a href="{{ route('admin.dashboard') }}" class="brand" aria-label="{{ \App\Models\SiteSetting::values()['site_title'] ?? 'JobYou' }}">
-            <img src="{{ \App\Support\ImageResolver::resolve($adminLogoPath, asset('assets/img/logo.png')) }}" data-fallback-image="{{ asset('assets/img/logo.png') }}" alt="{{ \App\Models\SiteSetting::values()['site_title'] ?? 'JobYou' }}">
+        <a href="{{ route('admin.dashboard') }}" class="brand" aria-label="{{ $adminSiteTitle }}">
+            <img src="{{ \App\Support\ImageResolver::resolve($adminLogoPath, asset('assets/img/logo.png')) }}" data-fallback-image="{{ asset('assets/img/logo.png') }}" alt="{{ $adminSiteTitle }}">
         </a>
         <div class="nav-label">Workspace</div>
         <a class="side-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>

@@ -49,7 +49,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="job-card">
                         <div class="job-image position-relative">
-                            <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" class="img-fluid w-100" alt="{{ $job->title }}">
+                            <img src="{{ \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" class="img-fluid w-100" alt="{{ $job->title }}" loading="lazy" decoding="async">
                             @if($job->qualification)<span class="position-absolute top-0 start-0 m-3 badge bg-primary px-3 py-2">{{ $job->qualification }}</span>@endif
                         </div>
                         <div class="job-body">
