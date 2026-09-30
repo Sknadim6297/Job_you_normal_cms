@@ -50,13 +50,13 @@
                     </div>
 
                     <label class="form-label small" for="job-image-url">Or use an image URL</label>
-                    <input class="form-control" type="url" name="image_url" id="job-image-url" value="{{ old('image_url', $job->image_url) }}" placeholder="https://example.com/image.jpg">
+                    <input class="form-control" type="url" name="image_url" id="job-image-url" value="{{ old('image_url') }}" placeholder="https://example.com/image.jpg">
 
                     <div class="mt-3">
                         <div class="small text-muted mb-2">Preview</div>
                         <div class="d-flex gap-3 align-items-center flex-wrap">
                             <div class="position-relative border rounded overflow-hidden bg-white" style="width: 180px; height: 110px;">
-                                <img id="job-image-preview" src="{{ old('image_url', $job->image_url) ? \App\Support\ImageResolver::resolve(old('image_url', $job->image_url), asset('assets/img/placeholder-job.svg')) : asset('assets/img/placeholder-job.svg') }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" alt="Job preview" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                <img id="job-image-preview" src="{{ $job->image_url ? \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) : asset('assets/img/placeholder-job.svg') }}" data-fallback-image="{{ asset('assets/img/placeholder-job.svg') }}" data-saved-image="{{ $job->image_url ? \App\Support\ImageResolver::resolve($job->image_url, asset('assets/img/placeholder-job.svg')) : '' }}" alt="Job preview" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                             </div>
                             @if($job->image_url)
                                 <div class="small text-muted">Current saved image</div>
@@ -205,25 +205,55 @@
             return;
         }
 
+        function isHttpImageUrl(value) {
+            try {
+                const url = new URL(value);
+                return url.protocol === 'http:' || url.protocol === 'https:';
+            } catch (error) {
+                return false;
+            }
+        }
+
+        if (isHttpImageUrl(urlInput.value.trim())) {
+            fileName.textContent = 'Using image URL';
+            preview.src = urlInput.value.trim();
+        }
+
         uploadInput.addEventListener('change', function (event) {
             const file = event.target.files && event.target.files[0];
-            if (!file) return;
+            if (!file) {
+                fileName.textContent = 'No file selected';
+                preview.src = preview.dataset.savedImage || preview.dataset.fallbackImage;
+                return;
+            }
 
             fileName.textContent = file.name;
             urlInput.value = '';
             const reader = new FileReader();
             reader.onload = function (e) {
-                preview.src = e.target.result;
+                if (uploadInput.files && uploadInput.files[0] === file && !urlInput.value.trim()) {
+                    preview.src = e.target.result;
+                }
             };
             reader.readAsDataURL(file);
         });
 
         urlInput.addEventListener('input', function () {
-            if (urlInput.value.trim() !== '') {
+            const url = urlInput.value.trim();
+
+            if (url !== '') {
                 fileName.textContent = 'Using image URL';
                 uploadInput.value = '';
-                preview.src = urlInput.value.trim();
+                if (isHttpImageUrl(url)) {
+                    preview.src = url;
+                } else {
+                    preview.src = preview.dataset.savedImage || preview.dataset.fallbackImage;
+                }
+                return;
             }
+
+            fileName.textContent = uploadInput.files && uploadInput.files[0] ? uploadInput.files[0].name : 'No file selected';
+            preview.src = preview.dataset.savedImage || preview.dataset.fallbackImage;
         });
     });
 </script>

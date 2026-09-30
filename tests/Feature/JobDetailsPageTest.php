@@ -32,13 +32,19 @@ class JobDetailsPageTest extends TestCase
         $response->assertSee('Dynamic details content.');
     }
 
+    public function test_job_details_returns_not_found_for_array_shaped_slug_query(): void
+    {
+        $this->get('/job-details?job%5B%5D=unexpected')
+            ->assertNotFound();
+    }
+
     public function test_job_details_renders_safe_rich_text_and_falls_back_for_a_missing_image(): void
     {
         JobPosting::create([
             'title' => 'Formatted Job Details',
             'slug' => 'formatted-job-details',
             'qualification' => 'Graduate',
-            'content' => '<h2 onclick="alert(1)">Requirements</h2><p><strong>Bold text</strong> and <a href="https://example.test/apply" onclick="alert(2)">safe link</a>.</p><script>alert(3)</script><p><a href="javascript:alert(4)">unsafe link</a></p>',
+            'content' => '<h2 onclick="alert(1)">Requirements</h2><p><strong>Bold text</strong> and <a href="https://example.test/apply" onclick="alert(2)">safe link</a>.</p><script>alert(3)</script><p><a href="javascript:alert(4)">unsafe link</a></p><iframe src="https://evil.example"></iframe><object data="/evil"></object><embed src="/evil"><svg onload="alert(5)"><text>unsafe</text></svg>',
             'author' => 'ADMIN963',
             'published_at' => now(),
             'sort_order' => 1,
@@ -54,6 +60,10 @@ class JobDetailsPageTest extends TestCase
             ->assertSee('assets/img/placeholder-job.svg', false)
             ->assertDontSee('onclick', false)
             ->assertDontSee('<script>', false)
+            ->assertDontSee('<iframe', false)
+            ->assertDontSee('<object', false)
+            ->assertDontSee('<embed', false)
+            ->assertDontSee('<svg', false)
             ->assertDontSee('javascript:', false);
     }
 

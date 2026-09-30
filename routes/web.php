@@ -30,6 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
         Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.edit');
         Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
         Route::post('/navigation/bulk-update', [NavigationController::class, 'bulkUpdate'])->name('navigation.bulk-update');
+        Route::post('/categories/bulk-update', [CategoryController::class, 'bulkUpdate'])->name('categories.bulk-update');
         Route::resource('/navigation', NavigationController::class)->except(['create', 'show', 'edit']);
         Route::resource('/categories', CategoryController::class)->except(['create', 'show', 'edit']);
         Route::resource('/jobs', JobController::class)->except(['show']);
